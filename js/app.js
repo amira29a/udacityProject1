@@ -17,83 +17,47 @@
  * Define Global Variables
 */
 // define variables  
-let sections = Array.from (document.querySelectorAll('section'));
-let menuList = document.querySelector('#navbar__list');
+let sections = document.querySelectorAll('section');
+// console.log(sections);
+let myNav = document.getElementById('navbar__list');
+//
 
-/**
- * End Global Variables
- * Start Helper Functions
- * 
-*/
-//defineding elements
 
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
+// created for loop to get section name of each section with get id and link
+for(let i= 0;i<sections.length;i++) {
+    var listItem = document.createElement("li");// Create li for each item
+    let sectionName = sections[i].getAttribute('data-nav');// or can i do it with another way like 
+    // let sectionName = sections[i].getElementsByTagName('h2').firstChild.nodeValue;
+    let sectionLink = sections[i].getAttribute('id'); // to get the id for each section 
+    listItem.innerHTML = `<a class = 'menu__link' href ='#${sectionLink}'> ${sectionName}</a>`;
+    myNav.appendChild(listItem); // add listitem to my nav
+}
 
-// build the nav
-// Build menu 
 
-//i have created array to select all sections and make a function to unordered list
-function createList(){ // create funtion called createdlist to create list of links
-    for (section of sections){
-     // created for loop to get section name of each section 
-        sectionName = section.getAttribute('data-nav');
-        sectionLink = section.getAttribute('id');
-        listLinks = document.createElement('li');
-        //create menu list of each section and add in nav menu in the top 
-        listLinks.innerHTML = `<a class = 'menu__link' href ='#${sectionLink}'> ${sectionName}</a>`;
-        menuList.appendChild(listLinks);
+
+ //getBoundingClientRect return speace bettween the element and the top with speace bettwen left and top 
+// there is another way to make with windows.scrollY but with getBoundingClientRect(); is more fit in this situation 
+// made function with paramter section and return it with getbounding 
+var ViewPort =  function(section){return (section.getBoundingClientRect().top >= 0);} // made function with paramater section and return it 
+document.addEventListener('scroll' , function(){ // add event to the document with scroll 
+ for (section of sections){ //created for loop for each section 
+    //if the section in view port check this class your-active-class id isnot in the section add it 
+    if (ViewPort(section)){ if(!section.classList.contains('your-active-class')){
+            section.classList.add('your-active-class');
+         }
+    }else {
+        // else removie the class name 
+        section.classList.remove('your-active-class');   
     }
 }
-
-// Add class 'active' to section when near top of viewport
-function sectionViewPort (e){
-    // to know where 
-    let sectionPort = e.getBoundingClientRect();
-    //getBoundingClientRect return speace bettween the element and the top with speace bettwen left and top 
-    return (sectionPort.top >= 0);
-
-}
-// add class active and style by adding your-active-class
-function activeClass(){
-    //created for loop for each section 
-    for (section of sections){
-        //if the section in view port check this class your-active-class id isnot in the section add it 
-        if (sectionViewPort(section)){
-            if(!section.classList.contains('your-active-class')){
-                section.classList.add('your-active-class');
-
-            }
-        }else {
-            // else removie the class name 
-            section.classList.remove('your-active-class');
-        
-        }
-    }
-}
+});
 
 
-createList();
-document.addEventListener('scroll' , activeClass);
-// Scroll to anchor ID using scrollTO event
-
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
-
-// there are menu ways to make the scroll by css / jquery and js //  
+// there are many ways to make the scroll by css / jquery and js //  
 // as in the project asking only to add js then i made it by js 
 // add smooth scroll
 let links = document.querySelectorAll(".navbar__menu ul a"); // defineding links
-// made for loop to add eventlinter click
-for (let link of links) {
+for (let link of links) { // made for loop to add eventlinter click
   link.addEventListener("click", clickHandler);
 }
 
@@ -107,12 +71,4 @@ function clickHandler(e) {
     behavior: "smooth"
   });
 }
-
-
-
-
-
-
-
-
 
