@@ -18,6 +18,16 @@ body {
     color: #fff;
 }
 
+ /* active class */
+.active { background-color: #395b68;
+}
+
+ /* active class for change text color */
+
+.navbar__menu .menu__link.active {
+ 
+    color: #fff;
+}
 
 /* Typeography General*/
 h1 {
