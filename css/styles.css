@@ -29,6 +29,7 @@ body {
     color: #fff;
 }
 
+
 /* Typeography General*/
 h1 {
     font-family: 'Fira Sans', sans-serif;
@@ -93,8 +94,8 @@ section {
 }
 
 .navbar__menu .menu__link:hover {
-    background: #333;
     color: #fff;
+    background-color: #395b68;
     transition: ease 0.3s all;
 }
 
@@ -252,5 +253,6 @@ navbar__menu ul {
  .navbar__menu li {
     display: block;
 } 
+
 
 }
