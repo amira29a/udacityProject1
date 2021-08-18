@@ -95,7 +95,7 @@ section {
 
 .navbar__menu .menu__link:hover {
     color: #fff;
-    background-color: #395b68;
+    background-color: #000000;
     transition: ease 0.3s all;
 }
 
@@ -254,5 +254,11 @@ navbar__menu ul {
     display: block;
 } 
 
+.navbar__menu .menu__link:hover{ 
+    background-color:  #395b68;
+}
+.navbar__menu .menu__link:active{ 
+    background-color:  #395b68;
+}
 
 }
